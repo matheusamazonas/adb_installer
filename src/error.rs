@@ -100,6 +100,8 @@ impl Display for Error {
 	}
 }
 
+impl std::error::Error for Error {}
+
 impl From<io::Error> for Error {
 	fn from(e: io::Error) -> Self {
 		Error::IO(e.to_string())
