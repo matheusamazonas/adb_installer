@@ -16,10 +16,11 @@ impl Device {
 	pub fn supports(&self, package: &Package) -> bool {
 		let platform_matches = package.platforms().iter().any(|p| &self.platform == p);
 		if package.match_file_name() {
-			platform_matches && package
-				.file_name()
-				.to_lowercase()
-				.contains(&self.platform.to_lowercase())
+			platform_matches
+				&& package
+					.file_name()
+					.to_lowercase()
+					.contains(&self.platform.to_lowercase())
 		} else {
 			platform_matches
 		}

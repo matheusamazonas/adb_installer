@@ -3,7 +3,7 @@ use std::fmt::Display;
 use std::{io, string};
 use string::FromUtf8Error;
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum Error {
 	IO(String),
 	NoHomeDirectory,
