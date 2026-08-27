@@ -78,7 +78,7 @@ impl Device {
 		}
 	}
 
-	fn from_str_with_platforms(line: &str, platforms: &[Platform]) -> Option<Device> {
+	fn from_str_with_platforms(line: &str, platforms: &[Platform]) -> Option<Self> {
 		let (id, platform) = Self::parse_info(line, platforms)?;
 		let name = Self::parse_name(&id).ok()?;
 		let device = Self { name, id, platform };
@@ -106,7 +106,7 @@ impl Device {
 		Some((id, platform))
 	}
 
-	pub fn get_devices(platforms: &[Platform]) -> Result<Vec<Device>, Error> {
+	pub fn get_devices(platforms: &[Platform]) -> Result<Vec<Self>, Error> {
 		let output = Command::new("adb").args(["devices", "-l"]).output()?;
 		let output = String::from_utf8(output.stdout)?;
 		let header_line_ix = output
